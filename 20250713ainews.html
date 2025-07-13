@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本日のAIニュース</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F9F8FD;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #9388F2;
+            margin: 0 1rem;
+        }
+         .flow-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #9388F2;
+            display: block;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="text-[#1E1B39]">
+    <!-- 
+        Narrative Plan:
+        1. Hero: Title and introduction to the rapid evolution of AI in July 2025.
+        2. Section 1 (Todo2): Introduce a developer-centric tool with a skeptical but practical tone, based on new user-provided summary.
+        3. Section 2 (Solohit): Showcase an inspirational learning tool for solo developers and non-engineers, based on new user-provided summary.
+        4. Section 3 (arXiv Paper): Present academic research on AI's impact on occupations with a data visualization, based on new user-provided summary.
+        5. Footer: Conclude with a final thought.
+        
+        Color Palette Chosen: "Energetic & Playful"
+        - Background: #F9F8FD
+        - Primary Text: #1E1B39
+        - Accent 1 (Vibrant Blue/Purple): #5037E5
+        - Accent 2 (Lighter Purple): #9388F2
+        - Accent 3 (Pink/Magenta): #E94A81
+        - Accent 4 (Yellow/Gold): #F4B33A
+
+        Visualization Plan:
+        - Todo2 - Pros/Cons: Goal=Compare, Viz=List (HTML/Tailwind). NO SVG.
+        - Solohit - Learning Perspectives: Goal=Organize, Viz=Diagram (HTML/Tailwind). NO SVG.
+        - arXiv Paper - AI Applicability: Goal=Compare/Organize, Viz=Horizontal Bar Chart (Chart.js). NO SVG.
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams and charts are rendered using HTML/Tailwind CSS or the Canvas-based Chart.js library.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#5037E5] mb-4">本日のAIニュース</h1>
+            <p class="text-lg md:text-xl text-[#1E1B39] max-w-3xl mx-auto">2025年7月、AIは新たなステージへ。業務効率化ツールから次世代基盤モデルまで、今知っておくべき最新トレンドをビジュアルで解説します。</p>
+        </header>
+
+        <main class="space-y-12 md:space-y-16">
+
+            <!-- Section 1: Todo2 -->
+            <section id="todo2" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">【①Product Huntの新製品紹介】</h2>
+                    <p class="text-md text-gray-600">AIはあくまで補助輪。過度な期待は禁物な開発者向けツール「Todo2」</p>
+                    <p class="mt-4 text-left text-gray-700">プログラミングツール「Cursor」内で動作するAIアシスタント。AIがプロジェクトのリサーチ、計画、実行を補助しますが、「100倍開発者」という宣伝文句は誇大広告の可能性大。あくまで人間の補助ツールと捉えるのが現実的です。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h3 class="font-bold text-xl mb-3 text-center">メリット (Pros)</h3>
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-r-lg space-y-2 h-full">
+                           <ul class="list-disc list-inside space-y-2">
+                               <li><strong>手間削減:</strong> 面倒なリサーチや計画立案をAIが代行。</li>
+                               <li><strong>生産性アップ:</strong> 時間を節約し、本来の業務に集中できる。</li>
+                               <li><strong>連携円滑化:</strong> 開発者と非開発者の間の橋渡し役として機能する可能性。</li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-3 text-center">デメリット (Cons)</h3>
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg space-y-2 h-full">
+                           <ul class="list-disc list-inside space-y-2">
+                               <li><strong>技術的ハードル:</strong> 非エンジニアには導入が難しい。</li>
+                               <li><strong>価格・精度が不明:</strong> 料金体系が不明で、AIの能力も未知数。</li>
+                               <li><strong>情報不足:</strong> 新しすぎて、信頼できるユーザー評価が少ない。</li>
+                           </ul>
+                        </div>
+                    </div>
+                     <div class="md:col-span-2 mt-4 text-center bg-gray-100 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800">結論: AIに頼りすぎず、自分の頭で考えることが重要。Notion AIなど、非エンジニア向けの代替ツールで十分な場合も多い。</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-right">
+                    <a href="https://www.producthunt.com/products/todo2-ai-project-manager-for-cursor" target="_blank" class="text-sm font-semibold text-[#5037E5] hover:text-[#E94A81]">情報源を見る →</a>
+                </div>
+            </section>
+
+            <!-- Section 2: Solohit -->
+            <section id="solohit" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">【②Solomakerの新製品紹介】</h2>
+                    <p class="text-md text-gray-600">成功の秘訣を3分で学ぶ！モチベーションが上がる無料学習ツール「Solohit」</p>
+                    <p class="mt-4 text-left text-gray-700">アプリやサービスを一人で作って大成功を収めた人たちのストーリーを、誰でもサクッと学べる無料サービス。プログラミング知識は不要で、新しい挑戦へのヒントと勇気をもらえます。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-bold text-xl mb-3 text-center">5つの成功の鍵から学ぶ</h3>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="bg-slate-100 p-4 rounded-lg shadow"><span class="font-bold text-[#5037E5]">① センターピン</span><br>(成功の核心)</div>
+                            <div class="bg-slate-100 p-4 rounded-lg shadow"><span class="font-bold text-[#9388F2]">② ロードマップ</span><br>(計画の立て方)</div>
+                            <div class="bg-slate-100 p-4 rounded-lg shadow"><span class="font-bold text-[#E94A81]">③ マーケティング</span><br>(宣伝方法)</div>
+                            <div class="bg-slate-100 p-4 rounded-lg shadow"><span class="font-bold text-[#F4B33A]">④ アイデア</span><br>(着想の原点)</div>
+                            <div class="col-span-2 bg-slate-100 p-4 rounded-lg shadow"><span class="font-bold text-gray-600">⑤ 開発アプローチ</span><br>(作り方のコツ)</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-3 text-center">おすすめポイント</h3>
+                         <ul class="list-none space-y-3 mt-4 text-left">
+                           <li class="flex items-start"><span class="text-2xl text-[#5037E5] mr-2">✓</span><span><strong>超時短:</strong> 長い本や動画ではなく、3分で要点がわかる。</span></li>
+                           <li class="flex items-start"><span class="text-2xl text-[#E94A81] mr-2">✓</span><span><strong>モチベUP:</strong> 「一人で大儲け」といった夢のある話でやる気が湧く。</span></li>
+                           <li class="flex items-start"><span class="text-2xl text-[#F4B33A] mr-2">✓</span><span><strong>完全無料:</strong> 登録不要で誰でもすぐにアクセス可能。</span></li>
+                        </ul>
+                         <p class="mt-4 bg-gray-100 p-3 rounded-lg text-center font-semibold">ターゲット: 副業を考えている会社員、アイデアを形にしたい学生、何か新しいことを始めたいすべての人。</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-right">
+                     <a href="https://www.solohit.dev/" target="_blank" class="text-sm font-semibold text-[#5037E5] hover:text-[#E94A81]">情報源を見る →</a>
+                </div>
+            </section>
+            
+            <!-- Section 3: arXiv Paper -->
+            <section id="arxiv" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">【③最新AIニュース】</h2>
+                    <p class="text-md text-gray-600">あなたの仕事はAIにどう見られている？最新研究が示す未来</p>
+                    <p class="mt-4 text-left text-gray-700">arXivで公開された最新論文（2507.07935）が、生成AIが各職業にどれだけ適用可能かをスコア化。約20万件のAI利用データを分析した、信頼性の高い研究です。</p>
+                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-xl mb-3 text-center">論文の概要</h3>
+                        <div class="bg-slate-50 p-4 rounded-lg space-y-2 text-sm">
+                            <p><strong>タイトル:</strong> Working with AI: Measuring the Occupational Implications of Generative AI</p>
+                            <p><strong>目的:</strong> 生成AIが、どの職業のタスクをどれだけ自動化・補助できるかを測定。</p>
+                            <p><strong>手法:</strong> Microsoft Bing Copilotの利用データに基づき、AIの適用可能性を職業分類ごとにスコア化。</p>
+                        </div>
+                         <div class="mt-4 bg-gray-100 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 text-center">結論</p>
+                            <p class="text-sm text-gray-700 mt-2">知的労働や定型的な事務作業ほどAIの影響を受けやすい傾向。一方で、建設や農林水産業など、物理的な作業を伴う職業への影響は限定的。</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="font-bold text-xl mb-3 text-center">AI適用可能性スコアが高い職業</h3>
+                        <div class="chart-container h-80 md:h-96">
+                            <canvas id="aiApplicabilityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 text-right">
+                    <a href="https://arxiv.org/pdf/2507.07935" target="_blank" class="text-sm font-semibold text-[#5037E5] hover:text-[#E94A81]">論文PDFを見る →</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">AI技術は日々進化しています。最新情報を活用し、あなたのビジネスを加速させましょう。</p>
+        </footer>
+
+    </div>
+
+<script>
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+    
+    const commonChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    font: {
+                        family: "'Inter', 'Noto Sans JP', sans-serif",
+                        size: 12
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                bodyFont: {
+                    family: "'Inter', 'Noto Sans JP', sans-serif"
+                },
+                titleFont: {
+                    family: "'Inter', 'Noto Sans JP', sans-serif"
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: { font: { family: "'Inter', 'Noto Sans JP', sans-serif" } },
+                grid: { color: '#e5e7eb' }
+            },
+            x: {
+                ticks: { font: { family: "'Inter', 'Noto Sans JP', sans-serif" } },
+                grid: { display: false }
+            }
+        }
+    };
+    
+    const processLabel = (label) => {
+        const maxLength = 16;
+        if (typeof label !== 'string' || label.length <= maxLength) return label;
+        
+        const words = label.split(' ');
+        let currentLine = '';
+        const lines = [];
+        
+        for (const word of words) {
+            if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        }
+        if (currentLine) {
+            lines.push(currentLine);
+        }
+        return lines;
+    };
+
+    // AI Applicability Chart (Horizontal Bar)
+    const aiApplicabilityCtx = document.getElementById('aiApplicabilityChart').getContext('2d');
+    const applicabilityData = [
+        { group: 'Computer and Mathematical', score: 0.45 },
+        { group: 'Business and Financial Operations', score: 0.38 },
+        { group: 'Office and Administrative Support', score: 0.35 },
+        { group: 'Sales and Related', score: 0.32 },
+    ].sort((a, b) => a.score - b.score);
+
+    new Chart(aiApplicabilityCtx, {
+        type: 'bar',
+        data: {
+            labels: applicabilityData.map(d => processLabel(d.group)),
+            datasets: [{
+                label: 'AI適用可能性スコア',
+                data: applicabilityData.map(d => d.score),
+                backgroundColor: ['#9388F2', '#E94A81', '#F4B33A', '#5037E5'],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...commonChartOptions,
+            indexAxis: 'y',
+            plugins: {
+                ...commonChartOptions.plugins,
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: { ...commonChartOptions.scales.y, grid: { display: false } },
+                x: { ...commonChartOptions.scales.x, grid: { color: '#e5e7eb' }, suggestedMax: 0.5 }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
