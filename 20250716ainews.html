@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIが変えるキャリア開発の未来</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!--
+    Narrative & Structure Plan:
+    1.  Title/Hook: AIが変えるキャリア開発の未来.
+    2.  Section 1: Product Hunt New Product Introduction (AgentR).
+    3.  Section 2: Solomaker New Product Introduction (EigoTube).
+    4.  Section 3: Latest AI News (Axios Article on Flattening & Gartner Prediction).
+    5.  Section 4: Conclusion (Performance vs. Cost).
+    6.  Footer: Copyright info.
+
+    Visualization Selection Plan:
+    -   Data Point: Gartner's prediction (over 50% of middle managers gone by 2026). Goal: Inform. Chosen Viz: "Single Big Number" callout. Method: Styled HTML. CONFIRMED NO SVG.
+    -   Data Point: AgentR's 2x2 decision support matrix. Goal: Organize/Compare. Chosen Viz: Custom HTML/CSS Grid. Method: Styled HTML. CONFIRMED NO SVG.
+    -   Data Point: Manager-to-report ratio (3.15 -> 5.76). Goal: Compare/Change. Chosen Viz: Bar Chart. Library: Chart.js. CONFIRMED NO SVG.
+    -   Data Point: EigoTube's 2x learning efficiency. Goal: Compare. Chosen Viz: "Single Big Number" callout. Method: Styled HTML. CONFIRMED NO SVG.
+    
+    Color Palette Selection:
+    -   Palette Name: Energetic & Playful
+    -   HEX Codes: #FF6B6B (Red), #FFD166 (Yellow), #06D6A0 (Green), #118AB2 (Blue), #073B4C (Dark Blue/Background)
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visuals are rendered using Chart.js on Canvas or structured HTML with Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #06D6A0, #118AB2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: 1.875rem; /* 3xl */
+            font-weight: 900;
+            color: white;
+            border-bottom: 3px solid #118AB2;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 0.5rem;
+            aspect-ratio: 1 / 1;
+            max-width: 250px;
+            margin: 1rem auto;
+        }
+        .matrix-quadrant {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-[#073B4C] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <p class="text-lg text-gray-300">AI News for Career Horizon</p>
+            <p class="text-2xl font-bold text-white">2025.07.16</p>
+            <p class="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">今週は、キャリア開発の現場でAIがどのように採用、学習、組織構造を変革しているかを示す、具体的なツールとニュースに焦点を当てます。</p>
+        </header>
+
+        <!-- Product Hunt Section -->
+        <section id="product-hunt" class="mb-12">
+            <h3 class="section-title">Product Hunt 新製品紹介</h3>
+            <div class="card">
+                <h4 class="text-2xl font-bold mb-2">AgentR 2.0 — 採用チーム専用「AI タレントアナリスト」</h4>
+                <p class="mb-4">大量の応募書類に埋もれがちな「ダイヤの原石」を見つけ出す、採用チーム専用AIツール。レジュメの深層解析で隠れた才能を発掘し、意思決定を高速化。多忙なHR担当者の負担を劇的に減らし、本当に会うべき候補者との出会いを創出します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <ul class="space-y-3">
+                            <li><strong class="text-[#118AB2] block">レジュメ深層解析</strong> 成果指標を定量化し、従来のATSでは埋もれていた “ハイポテンシャル候補” を浮上させます。</li>
+                            <li><strong class="text-[#06D6A0] block">ストーリー生成</strong> 候補者のキャリア軌跡を280文字で要約し、Hiring ManagerへSlackで通知します。</li>
+                            <li><strong class="text-[#FFD166] block">意思決定支援</strong> “スキルマッチ度 × 成長ポテンシャル” を2×2マトリクスで可視化し、客観的な判断をサポートします。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="matrix">
+                            <div class="matrix-quadrant bg-[#FF6B6B]">育成候補</div>
+                            <div class="matrix-quadrant bg-[#06D6A0]">即戦力スター</div>
+                            <div class="matrix-quadrant bg-gray-400">検討対象外</div>
+                            <div class="matrix-quadrant bg-[#FFD166] text-black">将来のリーダー</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="https://www.producthunt.com/products/agentr?launch=agentr-2-0" target="_blank" class="inline-block bg-[#118AB2] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#073B4C] transition-colors">AgentR 2.0 の詳細を見る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solomaker Section -->
+        <section id="solomaker" class="mb-12">
+            <h3 class="section-title">Solomaker 新製品紹介</h3>
+            <div class="card">
+                <h4 class="text-2xl font-bold mb-2">英語チューブ — YouTubeで英日同時字幕×AI翻訳！</h4>
+                <p class="mb-4">英語学習を動画ベースで革新するアプリ。YouTubeを活用し、AIで字幕翻訳とインタラクティブ学習を提供。キャリアアップを目指すビジネスパーソンに最適です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <ul class="space-y-3">
+                            <li><strong class="text-[#118AB2] block">主な特徴</strong> YouTubeを観ながら英語・日本語字幕を同時表示し、ワンタップで単語検索やフレーズ再生が可能。</li>
+                            <li><strong class="text-[#06D6A0] block">SNS型学習</strong> 字幕ごとにメモやコメントを残し、他の学習者のタイムラインで交流できます。</li>
+                            <li><strong class="text-[#FF6B6B] block">導入効果</strong> 字幕学習効率が2倍以上に向上し、リスニング力と語彙力が向上。シャドーイング機能で自然な発音も習得できます。</li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-8xl font-black text-[#06D6A0]">2x</p>
+                        <p class="text-2xl font-bold mt-2">学習効率UP</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="https://www.solomaker.dev/products/626fb482-5dd3-445c-a049-3850b7786188" target="_blank" class="inline-block bg-[#118AB2] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#073B4C] transition-colors">英語チューブの詳細を見る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest AI News Section -->
+        <section id="latest-news" class="mb-12">
+            <h3 class="section-title">最新AIニュース</h3>
+            <div class="card">
+                <h4 class="text-2xl font-bold mb-2">“AI Pushes Middle Managers Out”――組織のフラット化が加速</h4>
+                <p class="mb-4">今後、AIによって最初に仕事が奪われるのは中間管理職かもしれません。米テック業界では「グレート・フラットニング」が加速しており、ガートナーは2026年までに現在の中間管理職の半数以上がAIに代替される可能性があると予測しています。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="managerRatioChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-center bg-red-100 p-4 rounded-lg">
+                        <p class="text-red-800 font-bold">ガートナー予測</p>
+                        <p class="text-5xl font-black text-[#FF6B6B]">50%超</p>
+                        <p class="text-lg font-bold text-red-800">の中間管理職が</p>
+                        <p class="text-lg font-bold text-red-800">2026年までに消滅</p>
+                    </div>
+                </div>
+                <div class="mt-6">
+                     <ul class="space-y-3">
+                        <li><strong class="text-[#118AB2] block">組織フラット化の現状</strong> Gustoのデータでは、管理職1人あたりの部下数が2019年の3.15人から2024年には5.76人へと急増しています。</li>
+                        <li><strong class="text-[#06D6A0] block">AIの役割</strong> 部下からの定型的な質問への回答や管理業務の自動化をAIが担うことで、管理職の業務範囲拡大を可能にしています。</li>
+                        <li><strong class="text-[#FF6B6B] block">リスクと課題</strong> 安易なフラット化は、若手社員へのメンターシップ機会の喪失に繋がり、逆効果となる可能性も懸念されています。</li>
+                    </ul>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="https://www.axios.com/2025/07/08/ai-middle-managers-flattening-layoffs" target="_blank" class="inline-block bg-[#118AB2] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#073B4C] transition-colors">Axios の記事を読む</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion">
+            <h3 class="section-title">性能 vs コスト：AI活用の次なる一手</h3>
+            <div class="bg-white/10 text-white p-6 rounded-lg">
+                <p>生成AIのキャリア活用は、PoC（概念実証）を超え、ROIが問われるフェーズに入りました。今回のニュースで紹介された採用効率化ツール「AgentR」や、学習を加速する「英語チューブ」、そして組織のフラット化トレンドは、特定業務に特化したAIが競争力を高める好例です。</p>
+                <p class="mt-4">今後は、HR向けの採用解析や、自己学習向けの翻訳最適化など、部門別に効果的なプロンプトライブラリを構築し、定期的な効果測定を行うことが企業の成長を左右します。AIで効率化しつつも、人間による育成の価値を見失わないバランス感覚こそが、これからのキャリアホライゾンを広げる鍵となるでしょう。</p>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-gray-400 text-sm">
+            <p>© 2025 Career Horizon. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const FONT_COLOR = '#374151';
+            const GRID_COLOR = '#e5e7eb';
+            const PALETTE = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C'
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            // Manager Ratio Chart
+            const managerRatioCtx = document.getElementById('managerRatioChart');
+            if(managerRatioCtx) {
+                new Chart(managerRatioCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2019年', '2024年'],
+                        datasets: [{
+                            label: '部下の人数',
+                            data: [3.15, 5.76],
+                            backgroundColor: [PALETTE.blue, PALETTE.green],
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            borderRadius: 5,
+                            barPercentage: 0.5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: '管理職1人あたりの部下数の推移',
+                                color: FONT_COLOR,
+                                font: { size: 16, weight: 'bold' }
+                            },
+                            tooltip: {
+                                callbacks: { title: tooltipTitleCallback }
+                            }
+                        },
+                         scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 7,
+                                grid: { color: GRID_COLOR },
+                                ticks: { 
+                                    color: FONT_COLOR,
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: FONT_COLOR, font: { size: 14 } }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
