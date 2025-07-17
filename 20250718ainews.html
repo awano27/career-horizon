@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Agent: 自律型AIの革命</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!--
+    Infographic Narrative Plan:
+    1.  Hero Section: Grab attention with the main announcement and its significance.
+    2.  Core Concept: Explain what ChatGPT Agent is and how it's a paradigm shift.
+    3.  How It Works (Flowchart): Visualize the 3-part integrated system.
+    4.  Performance Benchmarks: Use bar charts to compare against competitors.
+    5.  ROI & Impact: Use large-number callouts for key business metrics.
+    6.  Use Cases: Show business and personal applications in a clear, two-column layout.
+    7.  Competitive Landscape: A grid-based comparison of major AI agents.
+    8.  Pricing Tiers: Display the pricing structure in easy-to-read cards.
+    9.  Conclusion/Caveats: End with important notes for users.
+
+    Visualization Choices:
+    -   ROI Metrics -> Goal: Inform -> Chosen Visualization: Single Big Number -> Justification: Highlights key performance indicators for immediate impact. Method: Styled HTML. NO SVG.
+    -   Core Components -> Goal: Organize -> Chosen Visualization: Flow Chart -> Justification: Clearly illustrates the process flow of the integrated system. Method: Structured HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+    -   Benchmark Data (SpreadsheetBench, OSWorld) -> Goal: Compare -> Chosen Visualization: Bar Chart -> Justification: Provides a direct, quantitative comparison of performance against competitors. Library: Chart.js/Canvas. NO SVG.
+    -   Competitor Features -> Goal: Compare/Organize -> Chosen Visualization: Styled Cards/Grid -> Justification: Allows for a structured, side-by-side comparison of qualitative features. Method: Styled HTML. NO SVG.
+    -   Pricing Plans -> Goal: Organize -> Chosen Visualization: Styled Cards/Grid -> Justification: Presents structured data clearly. Method: Styled HTML. NO SVG.
+
+    Color Palette Selection: 'Brilliant Blues' (#004AAD, #0A2463, #3E92CC, #FFFDFD, #D8315B) was chosen for its vibrant, modern, and tech-focused feel, suitable for an AI-themed infographic.
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used in this file. All visuals are created with Chart.js (Canvas) or structured HTML/CSS with Tailwind.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #004AAD, #3E92CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#0A2463] text-gray-800">
+
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+
+        <header class="text-center py-12 px-4">
+            <p class="text-lg font-semibold text-[#3E92CC]">AI News Special・2025年7月18日更新</p>
+            <h1 class="text-4xl md:text-6xl font-black text-white mt-4">ChatGPT Agent</h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">AIの未来を変える自律型アシスタント</h2>
+        </header>
+
+        <main class="space-y-16 mt-12">
+
+            <section class="bg-white rounded-xl shadow-2xl p-6 md:p-10 text-center">
+                <h3 class="text-3xl font-bold gradient-text">AI活用のパラダイムシフト</h3>
+                <p class="mt-4 max-w-4xl mx-auto text-lg leading-relaxed">
+                    従来の「一問一答」の会話型AIから、ChatGPT Agentは大きく進化しました。これは、複雑なタスクを自律的に計画し、ウェブサイト操作、コード実行、ファイル作成といった実際のアクションを完遂できる「真のAIエージェント」です。単なるアップグレードではなく、私たちがAIと関わる方法を根本から変える革命です。
+                </p>
+            </section>
+            
+            <section>
+                <h3 class="text-3xl font-bold text-white text-center mb-8">統合型エージェントシステムの仕組み</h3>
+                <div class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                    <p class="text-center text-lg mb-8">ChatGPT Agentは、3つの強力なツールをシームレスに統合し、人間のようなワークフローを実行します。</p>
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="text-center p-4">
+                            <div class="w-24 h-24 bg-[#004AAD] text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto">話</div>
+                            <h4 class="font-bold mt-2 text-xl">ChatGPT</h4>
+                            <p class="text-sm">自然言語で意図を理解</p>
+                        </div>
+                        <div class="text-5xl font-thin text-[#3E92CC] transform md:rotate-0 rotate-90">→</div>
+                         <div class="text-center p-4">
+                            <div class="w-24 h-24 bg-[#0A2463] text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto">🧠</div>
+                            <h4 class="font-bold mt-2 text-xl">エージェントコア</h4>
+                            <p class="text-sm">タスクを計画・実行</p>
+                        </div>
+                        <div class="text-5xl font-thin text-[#3E92CC] transform md:rotate-0 rotate-90">→</div>
+                        <div class="flex flex-col space-y-2 items-center">
+                            <div class="flex items-center space-x-2 bg-gray-100 rounded-lg p-2 w-52">
+                                <span class="text-2xl">🌐</span>
+                                <div>
+                                    <h5 class="font-semibold">Operator</h5>
+                                    <p class="text-xs">Webブラウジング</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 bg-gray-100 rounded-lg p-2 w-52">
+                                <span class="text-2xl">📚</span>
+                                <div>
+                                    <h5 class="font-semibold">Deep Research</h5>
+                                    <p class="text-xs">情報統合・分析</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h3 class="text-3xl font-bold text-white text-center mb-8">実力を示すベンチマーク結果</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                        <h4 class="text-xl font-bold text-center mb-4">SpreadsheetBenchでの比較</h4>
+                        <p class="text-center text-sm mb-4">スプレッドシートタスクの実行能力において、既存のツールを大幅に上回る精度を示しました。</p>
+                        <div class="chart-container">
+                            <canvas id="spreadsheetBenchChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                        <h4 class="text-xl font-bold text-center mb-4">OSWorldでの比較</h4>
+                        <p class="text-center text-sm mb-4">OS操作のシミュレーションにおいて、他社のエージェントより高いパフォーマンスを発揮しました。</p>
+                        <div class="chart-container">
+                            <canvas id="osWorldChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                 <h3 class="text-3xl font-bold text-white text-center mb-8">驚異的な導入効果 (ROI)</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                     <div class="bg-white rounded-xl shadow-2xl p-8">
+                         <p class="text-6xl font-black text-[#D8315B]">30%</p>
+                         <p class="mt-2 text-xl font-bold">生産性向上</p>
+                         <p class="text-sm mt-1">導入企業での最大値</p>
+                     </div>
+                      <div class="bg-white rounded-xl shadow-2xl p-8">
+                         <p class="text-4xl md:text-5xl font-black text-[#D8315B]">$70K</p>
+                         <p class="mt-2 text-xl font-bold">年間コスト削減</p>
+                         <p class="text-sm mt-1">Fortune 500での平均</p>
+                     </div>
+                      <div class="bg-white rounded-xl shadow-2xl p-8">
+                         <p class="text-6xl font-black text-[#D8315B]">25%</p>
+                         <p class="mt-2 text-xl font-bold">開封率向上</p>
+                         <p class="text-sm mt-1">メールマーケティング効果</p>
+                     </div>
+                 </div>
+            </section>
+            
+            <section>
+                <h3 class="text-3xl font-bold text-white text-center mb-8">具体的な活用シーン</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-2xl p-8">
+                        <h4 class="text-2xl font-bold mb-4 flex items-center">💼 ビジネス活用</h4>
+                        <ul class="space-y-3 list-inside list-disc text-left">
+                            <li><strong>競合分析とプレゼン作成:</strong> 市場調査から資料作成までを自動化。</li>
+                            <li><strong>カレンダー管理:</strong> 予定を確認し、会議の準備資料を自動作成。</li>
+                            <li><strong>財務モデリング:</strong> データ分析から報告書作成まで一貫して処理。</li>
+                            <li><strong>メール管理:</strong> 重要度に応じた自動分類と返信案を作成。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-8">
+                        <h4 class="text-2xl font-bold mb-4 flex items-center">👤 個人利用</h4>
+                         <ul class="space-y-3 list-inside list-disc text-left">
+                            <li><strong>旅行計画:</strong> フライト検索から予約、現地情報の収集まで一括処理。</li>
+                            <li><strong>ショッピング:</strong> 商品比較からオンラインでの購入までを自動化。</li>
+                            <li><strong>コンテンツ作成:</strong> ブログ記事やSNS投稿の企画から執筆までサポート。</li>
+                            <li><strong>学習サポート:</strong> 個人に最適化された教材の作成と進捗を管理。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+             <section>
+                <h3 class="text-3xl font-bold text-white text-center mb-8">主要AIエージェント比較</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-2xl p-6 flex flex-col">
+                        <h4 class="text-xl font-bold text-[#004AAD]">ChatGPT Agent</h4>
+                        <p class="text-sm text-gray-500 mb-2">OpenAI</p>
+                        <ul class="space-y-2 text-sm flex-grow">
+                            <li><strong>特徴:</strong> 統合型エージェントシステム、高い実行能力</li>
+                            <li><strong>強み:</strong> 実用的なタスクでの高いベンチマーク性能</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 flex flex-col">
+                        <h4 class="text-xl font-bold">Claude Computer Use</h4>
+                         <p class="text-sm text-gray-500 mb-2">Anthropic</p>
+                        <ul class="space-y-2 text-sm flex-grow">
+                            <li><strong>特徴:</strong> 200Kの広大なコンテキストウィンドウ</li>
+                            <li><strong>強み:</strong> 慎重で信頼性の高い応答生成</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 flex flex-col">
+                        <h4 class="text-xl font-bold">Microsoft Copilot Agents</h4>
+                        <p class="text-sm text-gray-500 mb-2">Microsoft</p>
+                        <ul class="space-y-2 text-sm flex-grow">
+                            <li><strong>特徴:</strong> Microsoft 365との深い連携</li>
+                            <li><strong>強み:</strong> エンタープライズ環境、ローコード/ノーコード開発</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white rounded-xl shadow-2xl p-6 flex flex-col lg:col-span-3">
+                        <h4 class="text-xl font-bold">Google Gemini Agents</h4>
+                        <p class="text-sm text-gray-500 mb-2">Google</p>
+                        <ul class="space-y-2 text-sm flex-grow">
+                            <li><strong>特徴:</strong> 1M以上のトークンコンテキスト、高いコスト効率</li>
+                            <li><strong>強み:</strong> マルチモーダル機能、Project Marinerによる複数タスク同時実行</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h3 class="text-3xl font-bold text-white text-center mb-8">料金体系と利用条件 (2025年7月時点)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white rounded-xl shadow-2xl p-6 border-t-8 border-[#3E92CC]">
+                        <h4 class="text-xl font-bold">Plus</h4>
+                        <p class="text-4xl font-black my-3">$20<span class="text-lg font-normal">/月</span></p>
+                        <p class="text-sm">月40メッセージ</p>
+                        <p class="text-sm mt-2">基本的なエージェント機能</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 border-t-8 border-[#3E92CC]">
+                        <h4 class="text-xl font-bold">Team</h4>
+                        <p class="text-4xl font-black my-3">$30<span class="text-lg font-normal">/月</span></p>
+                        <p class="text-sm">月40メッセージ</p>
+                        <p class="text-sm mt-2">共同作業機能付き</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 border-t-8 border-[#004AAD]">
+                        <h4 class="text-xl font-bold">Pro</h4>
+                        <p class="text-4xl font-black my-3">$200<span class="text-lg font-normal">/月</span></p>
+                        <p class="text-sm">月400メッセージ</p>
+                        <p class="text-sm mt-2">Operator含む全機能</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-2xl p-6 border-t-8 border-[#0A2463]">
+                        <h4 class="text-xl font-bold">Enterprise</h4>
+                        <p class="text-4xl font-black my-3">カスタム</p>
+                        <p class="text-sm">カスタム価格</p>
+                        <p class="text-sm mt-2">高度なセキュリティ</p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-red-100 border-l-4 border-[#D8315B] text-red-800 p-4 rounded-lg max-w-3xl mx-auto text-sm">
+                    <p><strong>注意点:</strong> 日本のユーザーは2-3%の為替手数料がかかる場合があります。また、現時点でOperator機能は米国のみでの提供です。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 mt-12">
+            <p class="text-white/70 text-sm">© 2025 AI News Special. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#0A2463',
+                        font: {
+                           size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#0A2463',
+                    titleFont: { size: 16 },
+                    bodyFont: { size: 14 },
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#e0e0e0'
+                    },
+                    ticks: {
+                        color: '#333',
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333'
+                    }
+                }
+            }
+        };
+
+        const spreadsheetData = {
+            labels: ['ChatGPT Agent', wrapLabel('Microsoft Copilot for Excel', 16)],
+            datasets: [{
+                label: '精度 (%)',
+                data: [45.5, 20.0],
+                backgroundColor: ['#004AAD', '#D8315B'],
+                borderColor: ['#003c8f', '#b82b4f'],
+                borderWidth: 1,
+                borderRadius: 5,
+                barThickness: 50
+            }]
+        };
+
+        new Chart(document.getElementById('spreadsheetBenchChart'), {
+            type: 'bar',
+            data: spreadsheetData,
+            options: commonChartOptions
+        });
+        
+        const osWorldData = {
+            labels: ['ChatGPT Agent', wrapLabel('Claude Computer Use', 16)],
+            datasets: [{
+                label: 'パフォーマンス (%)',
+                data: [38.1, 22.0],
+                backgroundColor: ['#004AAD', '#D8315B'],
+                borderColor: ['#003c8f', '#b82b4f'],
+                borderWidth: 1,
+                borderRadius: 5,
+                barThickness: 50
+            }]
+        };
+
+        new Chart(document.getElementById('osWorldChart'), {
+            type: 'bar',
+            data: osWorldData,
+            options: commonChartOptions
+        });
+    </script>
+</body>
+</html>
