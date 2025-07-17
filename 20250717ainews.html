@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIニュースインフォグラフィック (2025年7月17日更新)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-chart-node {
+            border: 2px solid;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .flow-chart-arrow {
+            position: relative;
+            width: 2px;
+            height: 50px;
+            margin: 0.5rem auto;
+        }
+        .flow-chart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+        }
+         .flow-chart-arrow.horizontal {
+            width: 50px;
+            height: 2px;
+            margin: auto 0.5rem;
+        }
+        .flow-chart-arrow.horizontal::after {
+            right: -14px;
+            left: auto;
+            bottom: 50%;
+            transform: translateY(50%);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left-style: solid;
+            border-left-width: 14px;
+            border-right: 0;
+        }
+        .kpi-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        .news-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #073B4C;
+            margin-bottom: 0.75rem;
+        }
+        .news-card p {
+            margin-bottom: 1rem;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+        .news-card strong {
+            color: #118AB2;
+            font-weight: 600;
+        }
+        .news-card a {
+            color: #FF6B6B;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .news-card a:hover {
+            color: #E53E3E;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#073B4C] mb-2">AIニュース速報</h1>
+            <p class="text-lg text-[#118AB2]">パーソナルAIとB2B特化ツールの最新動向 (2025年7月17日)</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="ollama" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-[#073B4C] mb-3">Product Hunt 新製品紹介</h2>
+                        <h3 class="text-lg font-semibold text-[#118AB2] mb-4">大規模言語モデルを、あなたのPCで：Ollama</h3>
+                        <p class="mb-4 text-gray-600">
+                            「Ollama」は、強力な大規模言語モデル（LLM）をユーザー自身のMac上で直接、簡単に実行できるツールです。クラウドへの依存をなくし、データプライバシー、コスト、カスタマイズ性の3つの大きな課題を解決します。
+                        </p>
+                        <div class="mt-4">
+                            <a href="https://www.producthunt.com/products/ollama" target="_blank" class="inline-block bg-[#FF6B6B] text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">
+                                Product Huntで見る →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                         <p class="text-center font-semibold text-gray-700 mb-2">Ollamaが提供する価値</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="ollamaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aquavoice" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1 flex flex-col items-center">
+                         <p class="text-center font-semibold text-gray-700 mb-2">音声入力の精度比較 (単語誤り率)</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="aquaVoiceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h2 class="text-2xl font-bold text-[#073B4C] mb-3">Solomaker 新製品紹介</h2>
+                        <h3 class="text-lg font-semibold text-[#118AB2] mb-4">次世代の音声入力: Aqua Voice</h3>
+                        <p class="mb-4 text-gray-600">
+                            Y Combinator支援の「Aqua Voice」は、業界最高水準の精度と速度を誇る音声テキスト変換システムです。単なる文字起こしではなく、ユーザーの意図と文脈を理解し、あらゆるアプリで作業効率を劇的に向上させます。
+                        </p>
+                        <div class="mt-4">
+                             <a href="https://withaqua.com/?utm_source=solomaker" target="_blank" class="inline-block bg-[#FF6B6B] text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">
+                               公式サイトを見る →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8">
+                     <h3 class="text-xl font-bold text-center text-[#073B4C] mb-4">料金プラン</h3>
+                     <div class="overflow-x-auto">
+                        <table class="w-full min-w-max text-left border-collapse">
+                            <thead>
+                                <tr class="bg-[#118AB2] text-white">
+                                    <th class="p-3 border border-gray-300">プラン</th>
+                                    <th class="p-3 border border-gray-300">月額料金</th>
+                                    <th class="p-3 border border-gray-300">主な機能</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-100 hover:bg-gray-200">
+                                    <td class="p-3 border border-gray-300 font-semibold">Starter</td>
+                                    <td class="p-3 border border-gray-300 font-semibold">無料</td>
+                                    <td class="p-3 border border-gray-300">1,000単語まで, Aqua Engine, カスタム辞書5個</td>
+                                </tr>
+                                <tr class="hover:bg-gray-200">
+                                    <td class="p-3 border border-gray-300 font-semibold">Pro</td>
+                                    <td class="p-3 border border-gray-300 font-semibold">$8/月 (年払)</td>
+                                    <td class="p-3 border border-gray-300">無制限, カスタム辞書800個, 新機能への早期アクセス</td>
+                                </tr>
+                                <tr class="bg-gray-100 hover:bg-gray-200">
+                                    <td class="p-3 border border-gray-300 font-semibold">Team</td>
+                                    <td class="p-3 border border-gray-300 font-semibold">$12/月 (年払)</td>
+                                    <td class="p-3 border border-gray-300">Proの全機能に加え, チーム共通設定, 一括請求</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     </div>
+                </div>
+            </section>
+            
+            <section id="latest-news" class="bg-transparent rounded-lg py-8">
+                 <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-[#073B4C] mb-3">最新AIニュース</h2>
+                    <p class="text-lg text-[#118AB2] max-w-3xl mx-auto">あなたの仕事を劇的に変えるかもしれない、注目のAIエージェント11選。業務特化型ツールの登場で、AIはより身近で強力なパートナーになります。</p>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>1. Orange Slice</h4>
+                        <p><strong>主な機能／用途:</strong> 宝の山を見つけ出すAI営業マン。Orange Sliceは、AIエージェントがウェブを24時間スキャンし、あなたの製品を買いたがっている企業を自動でリストアップ。もう手当たり次第の営業は不要です。質の高い見込み客に集中し、最速で契約を獲得しましょう。</p>
+                        <p><strong>情報源:</strong> <a href="https://orangeslice.ai/" target="_blank">公式サイト</a> | <a href="https://www.ycombinator.com/companies/orange-slice" target="_blank">Y Combinator</a> | <a href="https://x.com/kosuke_agos/status/1945683434371772823" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>2. Modernbanc</h4>
+                        <p><strong>主な機能／用途:</strong> あなたの会社に「AI財務アシスタント」を迎えませんか？Modernbancは、銀行口座や会計ソフトとリアルタイムに連携し、「今の資金で何ヶ月持つ？」といった経営者の悩みに即座に回答。スプレッドシートとにらめっこする時間をなくし、迅速な意思決定を強力にサポートします。</p>
+                        <p><strong>対象ユーザー:</strong> 専門の財務担当者(CFO)がいないスタートアップ創業者やビジネスオーナーに最適。財務の専門家でなくても、会社の数字を直感的に把握できます。</p>
+                        <p><strong>価格／提供形態:</strong> 現在、1ヶ月の無料トライアルを実施中。この機会に、未来の財務管理を体験してみてください。詳細は <a href="https://www.producthunt.com/products/modernbanc" target="_blank">Product Hunt</a>, <a href="https://www.ycombinator.com/companies/modernbanc" target="_blank">Y Combinator</a>, <a href="https://x.com/kosuke_agos/status/1945683436410138695" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>3. Finlens</h4>
+                        <p><strong>主な機能／用途:</strong> 面倒な会計業務はAIに任せましょう。Finlensは、QuickBooksと連携する「AI会計コーパイロット」。日々の取引仕訳から月末締めまでを自動化し、あなたの貴重な時間を生み出します。リアルタイムの財務ダッシュボードで、会社の健康状態も一目瞭然です。</p>
+                        <p><strong>対象ユーザー:</strong> 領収書の山に埋もれている創業者や、多くのクライアントを抱える会計士の強力な味方。会計の専門知識がなくても、安心して財務管理ができます。</p>
+                        <p><strong>価格／提供形態:</strong> なんと基本機能は無料でスタート可能。ビジネスの成長に合わせて、月額$99からのAIプランや、専門家サポート付きのプランにアップグレードできます。詳細は <a href="https://www.finlens.app/" target="_blank">公式サイト</a>, <a href="https://x.com/kosuke_agos/status/1945683438457032849" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>4. Blink</h4>
+                        <p><strong>主な機能／用途:</strong> アイデアが、瞬きする間にアプリに変わる。Blinkは、テキストで指示するだけで、デザイン、データベース、認証機能まで備えた本格的なアプリを数秒で開発する「世界最速のアプリビルダー」です。バグさえもAIが自動で修正。あなたの創造性を解き放ちます。</p>
+                        <p><strong>対象ユーザー:</strong> プログラミング経験のないビジネスパーソンから、プロトタイプを高速で作りたい開発者まで、アイデアを形にしたいすべての人へ。</p>
+                        <p><strong>価格／提供形態:</strong> 月25回のAI利用まで無料。気軽に試せるのが魅力です。本格的に使いたい方向けに、月額$20からのプランも用意されています。詳しくは <a href="https://blink.new/" target="_blank">公式サイト</a>, <a href="https://x.com/kosuke_agos/status/1945683440608649670" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>5. Edit (by Reducto AI)</h4>
+                        <p><strong>主な機能／用途:</strong> 書類の穴埋め作業、もう終わりにしませんか？Editは、PDFや契約書など、あらゆる書類のフォームをAIが自動で検出し、正確に記入してくれるエージェントです。API経由で利用でき、面倒な手作業と入力ミスからあなたを解放します。</p>
+                        <p><strong>対象ユーザー:</strong> 大量の申請書や契約書を扱う金融機関や企業のバックオフィス部門、AI開発チームに。書類業務のDXを劇的に推進します。</p>
+                        <p><strong>価格／提供形態:</strong> APIサービスとして提供。月額$350で15,000ページ分を処理できるプランから。現在、早期アクセス提供中。未来のドキュメント処理を体験したい方は <a href="https://reducto.ai/" target="_blank">公式サイト</a> のウェイトリストへ。 <a href="https://x.com/kosuke_agos/status/1945683442659717220" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>6. Wisp AI</h4>
+                        <p><strong>主な機能／用途:</strong> あなた専属の「AIエグゼクティブアシスタント」がここに。Wisp AIは、会議や通話に同席し、要約やタスクを自動で抽出。さらに、過去の会話内容から質問に答えたり、あなたの文体でメールの下書きを作成したりと、まるで優秀な秘書のように働きます。</p>
+                        <p><strong>対象ユーザー:</strong> 多数の会議とメール対応に追われる多忙なビジネスパーソンへ。情報整理とコミュニケーションの時間を大幅に削減します。</p>
+                        <p><strong>価格／提供形態:</strong> 7日間の無料トライアルでその実力を体感できます。継続利用は月額$25から。詳細は <a href="https://www.wispai.app/" target="_blank">公式サイト</a>, <a href="https://x.com/kosuke_agos/status/1945683444689764422" target="_blank">Xで見る</a></p>
+                    </div>
+                    <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>7. Asimov</h4>
+                        <p><strong>主な機能／用途:</strong> 開発時間の70%が消える？Asimovは、社内の膨大なコードやドキュメントをすべて読み解き、開発者の質問に答える「コードリサーチ用AIエージェント」です。「このコードの目的は？」といった問いに、出典付きで即答。複雑なシステムも完全に把握する、組織の知の結晶です。</p>
+                        <p><strong>対象ユーザー:</strong> 大規模なコードベースを持つ開発チームや、レガシーシステムの保守に悩む企業に。新メンバーのオンボーディングも劇的に速くなります。</p>
+                        <p><strong>価格／提供形態:</strong> 現在、早期アクセス提供中。企業の開発環境内に安全にデプロイできます。興味のある方は <a href="https://reflection.ai/asimov" target="_blank">公式サイト</a> からお問い合わせください。 <a href="https://x.com/kosuke_agos/status/1945683446744953155" target="_blank">Xで見る</a></p>
+                    </div>
+                     <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>8. Pond</h4>
+                        <p><strong>主な機能／用途:</strong> テキストメッセージが仕事のツールに進化する。Pondは、SMSやiMessageをPCで効率的に管理できる「メッセージ版Superhuman」です。AIがメッセージを自動で仕分け・優先表示し、返信文も提案。顧客対応のスピードと質を飛躍的に高めます。</p>
+                        <p><strong>対象ユーザー:</strong> 営業担当者、不動産エージェントなど、顧客とのSMS連絡が欠かせないプロフェッショナルに。スマホでの煩雑なやり取りから解放されます。</p>
+                        <p><strong>価格／提供形態:</strong> 基本機能は無料で利用可能。AIによる返信アシストなど高度な機能は月額$10のProプランで。まずは <a href="https://www.trypond.ai/" target="_blank">公式サイト</a> から無料でお試しを。 <a href="https://x.com/kosuke_agos/status/1945683448770826605" target="_blank">Xで見る</a></p>
+                    </div>
+                     <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>9. Herdora</h4>
+                        <p><strong>主な機能／用途:</strong> GPUの性能を100%引き出す魔法。Herdoraは、PyTorchコードを専門家レベルの最適化が施されたCUDAカーネルに自動変換する「CUDA版Cursor」です。数週間かかっていたチューニング作業が数秒で完了し、AIモデルの実行速度を劇的に向上させ、クラウドコストを削減します。</p>
+                        <p><strong>対象ユーザー:</strong> GPUのコストや性能に課題を持つすべてのAI開発チームへ。専門のGPUエンジニアがいなくても、最先端の最適化があなたのものに。</p>
+                        <p><strong>価格／提供形態:</strong> 現在、ベータ提供中。 <a href="https://www.herdora.com/" target="_blank">公式サイト</a> でウェイトリストに登録し、GPU最適化の未来をいち早く体験しましょう。 <a href="https://x.com/kosuke_agos/status/1945683450842738939" target="_blank">Xで見る</a></p>
+                    </div>
+                     <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>10. Riff</h4>
+                        <p><strong>主な機能／用途:</strong> 音楽制作が、もっと直感的に、もっと楽しくなる。Riffは「音楽制作のためのCursor」と呼ばれる次世代DAWです。「このトラックに女性ボーカルを追加して」と話しかけるだけで、AIがアイデアを形にします。面倒な編集作業はAIに任せ、あなたは創造に集中できます。</p>
+                        <p><strong>対象ユーザー:</strong> 複雑な操作に挫折した初心者から、作業効率を上げたいプロのミュージシャンまで、音楽を愛するすべての人へ。</p>
+                        <p><strong>価格／提供形態:</strong> 現在ベータ版を早期アクセス提供中。 <a href="https://www.goriff.com/" target="_blank">公式サイト</a> で登録して、未来の音楽制作を始めましょう。 <a href="https://x.com/kosuke_agos/status/1945683452872843557" target="_blank">Xで見る</a></p>
+                    </div>
+                     <div class="news-card bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h4>ボーナス. Tecto</h4>
+                        <p><strong>主な機能／用途:</strong> 安心してAIを「採用」するための人事・監督システム。Tectoは、社内で利用するAIエージェントの適性評価から導入、継続的な監視までを一元管理するガバナンスプラットフォームです。セキュリティやコンプライアンスのリスクを管理し、AI活用のアクセルを踏み込めます。</p>
+                        <p><strong>対象ユーザー:</strong> AIツールの全社導入を進めたいが、安全性や規制対応に不安を感じているIT・セキュリティ・ガバナンス部門の責任者。</p>
+                        <p><strong>価格／提供形態:</strong> エンタープライズ向けのSaaSとして早期アクセス提供中。AIガバナンスに関心のある企業は <a href="https://www.ycombinator.com/companies/tectoai?utm_source=chatgpt.com" target="_blank">Y Combinatorのページ</a> や <a href="https://x.com/kosuke_agos/status/1945683454995107966" target="_blank">Xで見る</a> ことで詳細を確認できます。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="strategic-outlook" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-[#073B4C] mb-3">戦略的洞察と未来展望</h2>
+                    <p class="text-lg text-[#118AB2] max-w-3xl mx-auto">ローカルAIと高度なUIの融合は、次世代の「ハイブリッド・パーソナルAI」の到来を予感させます。</p>
+                </div>
+                
+                <h3 class="text-xl font-bold text-center text-[#073B4C] mb-4">未来のハイブリッドAIエコシステム</h3>
+                <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
+                    ユーザーは処理がどこで行われているかを意識することなく、シームレスで安全なAIアシスタントを享受します。タスクの機密性や複雑性に応じて、処理はローカルとクラウド間で自動的に振り分けられます。
+                </p>
+
+                <div class="flex flex-col items-center">
+                    <div class="flow-chart-node border-[#FFD166] text-[#073B4C]">ユーザー入力 (音声/テキスト)</div>
+                    <div class="flow-chart-arrow bg-[#118AB2]" style="border-bottom-color: #118AB2;"></div>
+                    <div class="flow-chart-node border-[#118AB2] bg-[#118AB2] text-white">インテリジェントUI (例: Aqua Voice)</div>
+                    <div class="flow-chart-arrow bg-[#118AB2]" style="border-bottom-color: #118AB2;"></div>
+                    <div class="flow-chart-node border-[#06D6A0] text-[#073B4C]">タスク分析 & ルーティング</div>
+                    
+                    <div class="w-full max-w-2xl flex justify-around mt-8 items-start">
+                        <div class="flex flex-col items-center flex-1 px-2">
+                             <div class="w-px h-8 bg-gray-300"></div>
+                             <div class="h-px w-full bg-gray-300 relative">
+                                <div class="absolute top-1/2 left-0 w-2 h-2 bg-gray-300 rounded-full -translate-y-1/2"></div>
+                             </div>
+                             <div class="w-px h-8 bg-gray-300"></div>
+                            
+                            <p class="text-sm font-semibold text-gray-500 mb-2">機密/高速処理</p>
+                            <div class="flow-chart-arrow bg-[#FF6B6B]" style="border-bottom-color: #FF6B6B;"></div>
+                            <div class="flow-chart-node border-[#FF6B6B] bg-[#FF6B6B] text-white">ローカルエンジン (例: Ollama)</div>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 px-2">
+                             <div class="w-px h-8 bg-gray-300"></div>
+                             <div class="h-px w-full bg-gray-300 relative">
+                                <div class="absolute top-1/2 right-0 w-2 h-2 bg-gray-300 rounded-full -translate-y-1/2"></div>
+                             </div>
+                             <div class="w-px h-8 bg-gray-300"></div>
+                            <p class="text-sm font-semibold text-gray-500 mb-2">複雑/大規模処理</p>
+                            <div class="flow-chart-arrow bg-[#06D6A0]" style="border-bottom-color: #06D6A0;"></div>
+                            <div class="flow-chart-node border-[#06D6A0] bg-[#06D6A0] text-white">クラウドLLM (例: GPT, Gemini)</div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-gray-500">Infographic generated by Canvas Infographics. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    if (currentLine) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const chartTooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#073B4C',
+                        font: {
+                            family: "'Inter', sans-serif",
+                            weight: '500'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: chartTooltipTitleCallback
+                    },
+                    backgroundColor: '#073B4C',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold',
+                        family: "'Inter', sans-serif"
+                    },
+                    bodyFont: {
+                        size: 12,
+                        family: "'Inter', sans-serif"
+                    },
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        const palette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            lightGray: '#CED4DA'
+        };
+
+        const ollamaCtx = document.getElementById('ollamaChart').getContext('2d');
+        new Chart(ollamaCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['100%データプライバシー', 'APIコストゼロ', '完全なカスタマイズ性'],
+                datasets: [{
+                    label: 'Ollama Value',
+                    data: [40, 35, 25],
+                    backgroundColor: [palette.blue, palette.green, palette.yellow],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: { ...commonChartOptions }
+        });
+
+        const aquaVoiceCtx = document.getElementById('aquaVoiceChart').getContext('2d');
+        new Chart(aquaVoiceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Aqua Voice', '一般的な音声入力 (推定)'],
+                datasets: [{
+                    label: '単語誤り率 (%)',
+                    data: [0.9, 15.3],
+                    backgroundColor: [palette.green, palette.red],
+                    borderColor: [palette.green, palette.red],
+                    borderWidth: 1,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '誤り率 (%) - 低いほど良い',
+                            color: palette.darkBlue
+                        },
+                         ticks: { color: palette.darkBlue }
+                    },
+                    y: {
+                        ticks: { color: palette.darkBlue }
+                    }
+                },
+                 plugins: { ...commonChartOptions.plugins, legend: { display: false }}
+            }
+        });
+        
+    </script>
+</body>
+</html>
